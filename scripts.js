@@ -1,8 +1,10 @@
-let num1 = 0;
-let num2 = 0;
+let num1;
+let num2;
 let operator = "";
 let result = 0;
 let displayValue = "";
+
+console.log(num1);
 
 function add(a, b) {
     return a + b;
@@ -42,43 +44,104 @@ const operatorButton = document.querySelectorAll(".operatorButton");
 const equalsButton = document.querySelector("#equalsButton")
 const clearButton = document.querySelector("#clearButton")
 
+const buttons = document.querySelectorAll("button");
+
+document.addEventListener("keydown", (event => {
+    buttons.forEach(button => {
+        const accessKey = button.getAttribute("accesskey");
+        if (event.key === accessKey) {
+            button.click();
+        }
+        console.log(accessKey);
+    })
+    console.log(event);
+}))
+
 numberButton.forEach((button) => {
     button.addEventListener("click", () => {
-        displayValue += button.textContent;
-        display.textContent = displayValue;
-
 
         if (operator === "") {
-            num1 = parseInt(displayValue);
+            displayValue += button.textContent;
+            display.textContent = displayValue;
+            num1 = parseFloat(displayValue);
         }
         else {
-            num2 = parseInt(displayValue);
+            displayValue += button.textContent;
+            display.textContent = displayValue;
+            num2 = parseFloat(displayValue);
         }
 
-        console.log(`Num 1: ${num1}`);
-        console.log(operator);
-        console.log(`Num 2: ${num2}`);
+        console.log({num1});
+        console.log({operator});
+        console.log({num2});
     })
 })
 
 operatorButton.forEach((button) => {
     button.addEventListener("click", () => {
-        operator = button.textContent;
-        displayValue = "";
-        display.textContent = 0;
+
+        if (num1 !== undefined && operator === "/" && num2 === 0) {
+            display.textContent = "Error: Cannot / 0.";
+            num1 = undefined;
+            num2 = undefined;
+            operator = "";
+            result = 0;
+            displayValue = "";
+        }
+        else if (operator !== "" && num1 !== undefined && num2 !== undefined) {
+            result = operate(operator, num1, num2);
+            display.textContent = Number(result.toFixed(10));
+            num1 = result;
+            operator = button.textContent;
+            displayValue = "";
+        }
+        else {
+            operator = button.textContent;
+            displayValue = "";
+        }
+
+        console.log({num1});
+        console.log({operator});
+        console.log({num2});
     })
 })
 
 equalsButton.addEventListener("click", () => {
-    result = operate(operator, num1, num2);
-    display.textContent = result;
+
+    if (operator === "" || num1 === undefined || num2 === undefined) {
+
+    }
+    else if (num1 !== undefined && operator === "/" && num2 === 0) {
+        display.textContent = "Error: Cannot / 0.";
+        num1 = undefined;
+        num2 = undefined;
+        operator = "";
+        result = 0;
+        displayValue = "";
+    }
+    else {
+        result = operate(operator, num1, num2);
+        display.textContent = Number(result.toFixed(10));
+        num1 = result;
+        num2 = undefined;
+        operator = "";
+        displayValue = "";
+    }
+
+    console.log({num1});
+    console.log({operator});
+    console.log({num2});
 });
 
 clearButton.addEventListener("click", () => {
-    num1 = 0;
-    num2 = 0;
+    num1 = undefined;
+    num2 = undefined;
     operator = "";
     result = 0;
     displayValue = "";
     display.textContent = 0;
+
+    console.log({num1});
+    console.log({operator});
+    console.log({num2});
 })
