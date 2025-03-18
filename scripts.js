@@ -40,7 +40,9 @@ function operate(operator, a, b) {
 let display = document.querySelector("#display");
 
 const numberButton = document.querySelectorAll(".numberButton");
+const decimalButton = document.querySelector("#decimalButton");
 const operatorButton = document.querySelectorAll(".operatorButton");
+const backspaceButton = document.querySelector("#backspaceButton");
 const equalsButton = document.querySelector("#equalsButton")
 const clearButton = document.querySelector("#clearButton")
 
@@ -92,6 +94,7 @@ operatorButton.forEach((button) => {
             result = operate(operator, num1, num2);
             display.textContent = Number(result.toFixed(10));
             num1 = result;
+            num2 = undefined;
             operator = button.textContent;
             displayValue = "";
         }
@@ -144,4 +147,49 @@ clearButton.addEventListener("click", () => {
     console.log({num1});
     console.log({operator});
     console.log({num2});
+})
+
+backspaceButton.addEventListener("click", () => {
+
+    if (display.textContent.length === 1 && operator === "") {
+        display.textContent = "0";
+        displayValue = "";
+        num1 = undefined;
+    }
+    else if (display.textContent.length === 1 && operator !== "") {
+        display.textContent = "0";
+        displayValue = "";
+        num2 = undefined;
+    }
+    else if (operator === "") {
+        display.textContent = display.textContent.slice(0,-1);
+        displayValue = display.textContent;
+        num1 = parseFloat(displayValue);
+    }
+    else if (operator !== "") {
+        display.textContent = display.textContent.slice(0,-1);
+        displayValue = display.textContent;
+        num2 = parseFloat(displayValue);
+    }
+
+    console.log({num1});
+    console.log({operator});
+    console.log({num2});
+})
+
+buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+        if (display.textContent.includes(".")) {
+            decimalButton.setAttribute("disabled", "");
+            console.log(decimalButton);
+        }
+        else {
+            decimalButton.removeAttribute("disabled");
+            console.log(decimalButton);
+        }
+
+        if (display.textContent.indexOf(".") === 0) {
+            display.textContent = "0" + display.textContent;
+        }
+    })
 })
