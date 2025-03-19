@@ -8,24 +8,37 @@
     <script src="scripts.js" defer></script>
 </head>
 <body>
-    <div id="display">0</div>
-    <button class="numberButton" accesskey="0" type="button">0</button>
-    <button class="numberButton" accesskey="1" type="button">1</button>
-    <button class="numberButton" accesskey="2" type="button">2</button>
-    <button class="numberButton" accesskey="3" type="button">3</button>
-    <button class="numberButton" accesskey="4" type="button">4</button>
-    <button class="numberButton" accesskey="5" type="button">5</button>
-    <button class="numberButton" accesskey="6" type="button">6</button>
-    <button class="numberButton" accesskey="7" type="button">7</button>
-    <button class="numberButton" accesskey="8" type="button">8</button>
-    <button class="numberButton" accesskey="9" type="button">9</button>
-    <button class="numberButton" id ="decimalButton" accesskey="." type="button">.</button>
-    <button id="backspaceButton" accesskey="Backspace" type="button">&lt;</button>
-    <button class="operatorButton" accesskey="+" type="button">+</button>
-    <button class="operatorButton" accesskey="-" type="button">-</button>
-    <button class="operatorButton" accesskey="*" type="button">*</button>
-    <button class="operatorButton" accesskey="/" type="button">/</button>
-    <button id="equalsButton" accesskey="=" type="button">=</button>
-    <button id="clearButton" accesskey="" type="button">Clear</button>
+    <h1>Calculator</h1>
+    <div id="calculator-container">
+        <div class="row" id="display">0</div>
+        <div class="row" id="rowOne">
+            <button id="clearButton" accesskey="" type="button">Clear</button>
+            <button id="backspaceButton" accesskey="Backspace" type="button">Back</button>
+        </div>
+        <div class="row" id="rowTwo">
+            <button class="numberButton" accesskey="7" type="button">7</button>
+            <button class="numberButton" accesskey="8" type="button">8</button>
+            <button class="numberButton" accesskey="9" type="button">9</button>
+            <button class="operatorButton" accesskey="/" type="button">/</button>
+        </div>
+        <div class="row" id="rowThree">
+            <button class="numberButton" accesskey="4" type="button">4</button>
+            <button class="numberButton" accesskey="5" type="button">5</button>
+            <button class="numberButton" accesskey="6" type="button">6</button>
+            <button class="operatorButton" accesskey="*" type="button">*</button>
+        </div>
+        <div class="row" id="rowFour">
+            <button class="numberButton" accesskey="1" type="button">1</button>
+            <button class="numberButton" accesskey="2" type="button">2</button>
+            <button class="numberButton" accesskey="3" type="button">3</button>
+            <button class="operatorButton" accesskey="-" type="button">-</button>
+        </div>
+        <div class="row" id="rowFive">
+            <button class="numberButton" accesskey="0" type="button">0</button>
+            <button class="numberButton" id ="decimalButton" accesskey="." type="button">.</button>
+            <button id="equalsButton" accesskey="=" type="button">=</button>
+            <button class="operatorButton" accesskey="+" type="button">+</button>
+        </div>
+    </div>
 </body>
 </html>

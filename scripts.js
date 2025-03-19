@@ -154,12 +154,12 @@ backspaceButton.addEventListener("click", () => {
     if (display.textContent.length === 1 && operator === "") {
         display.textContent = "0";
         displayValue = "";
-        num1 = undefined;
+        num1 = 0;
     }
     else if (display.textContent.length === 1 && operator !== "") {
         display.textContent = "0";
         displayValue = "";
-        num2 = undefined;
+        num2 = 0;
     }
     else if (operator === "") {
         display.textContent = display.textContent.slice(0,-1);
